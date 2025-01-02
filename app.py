@@ -1,9 +1,16 @@
-
 import streamlit as st
 import logging
 
-# Get the Streamlit logger
+# Configure the root logger
+root_logger = logging.getLogger()
+root_logger.setLevel(logging.DEBUG)  # Set the minimum level to capture
+
+handler = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+root_logger.addHandler(handler)
+
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG) 
-print("Reached here - Imports done")
-st.write('hello')
+
+logger.debug("This is a debug message (root logger configured)")
+st.write("Hello Streamlit!")
